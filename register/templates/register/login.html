@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/translation.js' %}"></script>
+</head>
+<body>
+    <div class="container" id="content">
+        <h2>Login</h2>
+
+        <!-- Display form-wide non-field errors (e.g., incorrect username or password) -->
+        {% if form.non_field_errors %}
+            <div class="error-message">
+                <ul>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Login form -->
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+
+            <!-- Display form field errors -->
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username</label>
+                {{ form.username }}
+                <small class="error-text">{{ form.username.errors }}</small>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password.id_for_label }}">Password</label>
+                {{ form.password }}
+                <small class="error-text">{{ form.password.errors }}</small>
+            </div>
+
+            <!-- Submit button for login -->
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+
+        <!-- Forgot password link -->
+        <div class="forgot-password-container">
+          <a href="{% url 'password_reset' %}" class="btn-link">Forgot my password?</a>
+        </div>
+
+        <!-- "Don't have an account" button -->
+        <div class="signup-container">
+            <p>Don't have an account?</p>
+            <a href="{% url 'register' %}" class="btn btn-secondary">Sign up</a>
+        </div>
+    </div>
+</body>
+</html>
+

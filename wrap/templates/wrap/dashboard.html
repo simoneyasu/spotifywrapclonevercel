@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Wraps Dashboard</title>
+  <link rel="stylesheet" href="{% static 'wrap/dashboard.css' %}">
+  <script src="{% static 'js/translation.js' %}"></script>
+</head>
+
+<div class="banner">
+  <div class="dashboard">
+    Wraps Dashboard
+  </div>
+  <div class="user">
+    {{ user.username }}
+  </div>
+</div>
+
+<body>
+  <h1> Your Wraps: </h1>
+  <div class="Wrap">
+    <div class="WrapTemp">
+      <h2>Wrap Name</h2>
+        <a href="{% url 'view_wraps' %}">
+        <button type="button" class="viewBTN"> View </button>
+        </a>
+    </div>
+  </div>
+  <button class="createBTN"> Create </button>
+</body>
+</html>
